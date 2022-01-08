@@ -8,10 +8,15 @@ public class HomeController : Controller
 {
     public ViewResult Index()
     {
-        Dictionary<string, Product> products = new Dictionary<string, Product> {
-            ["Kayak"] = new Product { Name = "Kayak", Price = 275M },
-            ["Lifejacket"] = new Product { Name = "Lifejacket", Price = 48.95M }
-        };
-        return View(products.Keys);
+        object[] data = new object[] { 275M, 29.95M, 
+            "apple", "orange", 100, 10 };
+        decimal total = 0;
+        for (int i = 0; i < data.Length; i++)
+        {
+            if (data[i] is decimal d) {
+                total += d;
+            }
+        }
+        return View(new string[] { $"Total: {total:C2}" });
     }    
 }
