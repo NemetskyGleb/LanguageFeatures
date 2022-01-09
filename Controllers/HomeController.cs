@@ -14,7 +14,10 @@ public class HomeController : Controller
             new Product { Name = "Soccer ball", Price = 19.50M },
             new Product { Name = "Corner flag", Price = 34.95M }
         };
-        decimal arrayTotal = productArray.FilterByPrice(20).TotalPrices();
-        return View(new string[] { $"Total: {arrayTotal:C2}" });
+        decimal priceFilterTotal = productArray.FilterByPrice(20).TotalPrices();
+        decimal nameFilterTotal = productArray.FilterByName('S').TotalPrices();
+        return View(new string[] {
+             $"Total: {priceFilterTotal:C2}",
+             $"Total: {nameFilterTotal:C2}"});
     }    
 }
